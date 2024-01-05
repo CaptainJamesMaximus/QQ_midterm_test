@@ -92,3 +92,76 @@ cat("Yes. P(color_deficiency, Male)", p_cdm, "is the same as","\n", "P(color_def
 
 Based on these computations, the probability of color deficiency is independent on the gender category because with regards to each gender (male, female), the probability of color deficiency is the same.
 that is 0.12
+
+
+## Q2
+
+```{r echo=FALSE}
+data_hand <- data.frame(
+  right_handed = c(0.36, 0.44),
+  left_handed = c(0.09, 0.11)
+)
+
+row.names(data_hand) <- c("male", "female")
+print(data_hand)
+
+```
+
+```{r include=FALSE}
+t_rh <- sum(data_hand$right_handed)
+t_lh <- sum(data_hand$left_handed)
+t_mrl <- rowSums(data_hand[row.names(data_hand) == "male", c("right_handed", "left_handed")])
+t_frl <- rowSums(data_hand[row.names(data_hand) == "female", c("right_handed", "left_handed")])
+
+```
+
+## Q2a
+
+```{r echo=FALSE}
+# P(left_handed) = 
+p_lh <- t_lh/sum(t_lh, t_rh)
+print(paste("P(left_handed) =",p_lh))
+
+# P(right_handed) = 
+p_rh <- t_rh/sum(t_rh, t_lh)
+print(paste(" P(right_handed) =",p_rh))
+
+# P(male)
+p_m <- t_mrl/sum(t_mrl, t_frl)
+
+# p(female)
+p_f <- t_frl/sum(t_mrl, t_frl)
+
+# P(left_handed, male) = 
+p_lhm <- p_lh * p_m
+print(paste("P(left_handed, male) =",p_lhm))
+
+# P(right_handed, female) = 
+p_rhf <- p_rh * p_f 
+print(paste("P(right_handed, female) =",p_rhf ))
+
+# P(left_handed | male) = 
+p_lh_m <- (p_lhm / p_m)
+print(paste("P(left_handed | male) =",p_lh_m ))
+
+# P(right_handed | female) =
+p_rh_f <- p_rhf/p_f
+print(paste("P(right_handed | female) =",p_rh_f ))
+
+```
+
+## Q2b.
+
+Is P(left_handed, male) equal to P(left_handed) \* P(male) ?
+Yes.
+Statistically, P(left_handed, male) is given as P(left_handed) \* P(male) which in turn equals 0.09
+
+Is P(left_handed, male) equal to P(left_handed \| male) \* P(male)?
+Yes.
+Statistically, P(left_handed \| male) \* P(male) is reduced to P(left_handed, male) which is 0.09
+
+## Q2c.
+
+From the conditional probabilities, we can say that the probability of being left-handed or right-handed is independent of gender because P(left_handed \| male) = P(left_handed) and P(right_handed \| female) = P(right_handed).
+In other words, knowing the gender does not provide additional information about handedness.
+If handedness and gender were dependent, the conditional probabilities would not be equal to the marginal probabilities of handedness.
