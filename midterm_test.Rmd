@@ -1,0 +1,15 @@
+---
+title: "QQ Midterm Test"
+author: "Anthony Mensah"
+date: "2024-01-04"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(MASS)
+library(lsmeans)
+library(dplyr)
+library(car)
+```
