@@ -292,3 +292,23 @@ confidence_interval <- t_test_result$conf.int
 cat("95% Confidence Interval:", confidence_interval, "\n")
 
 ```
+
+## Q5
+
+The 3 two-sample unpaired t-tests (5a, 5b, 5c) comparing 2 conditions
+
+```{r echo=FALSE}
+# Load data
+dTmQ5 = read.delim("C:/Users/antho/Downloads/QQ Data/dataTestMidQ5.txt", header=TRUE, sep="\t")
+
+dTmQ5Cond1 = dTmQ5$Resp[dTmQ5$Conditions == "Cond1"]
+dTmQ5Cond2 = dTmQ5$Resp[dTmQ5$Conditions == "Cond2"]
+
+ttest_5a <- t.test(dTmQ5Cond1, dTmQ5Cond2, paired = FALSE, var.equal = TRUE)
+ttest_5b <- t.test(dTmQ5Cond1, dTmQ5Cond2, paired = FALSE, var.equal = FALSE)
+ttest_5c <- t.test(dTmQ5Cond1, dTmQ5Cond2, paired = FALSE)
+
+cat("5a is a student's t-test as a result of pre defining variance as EQUAL", "\n")
+cat("5b is Welch's t-test with variance pre defined as NOT EQUAL","\n")
+cat("5c is also Welch's t-test, though equality of variance was not defined prior in", "\n", "the function, but the default value for unpaired t-test variance is always NOT EQUAL","\n")
+```
