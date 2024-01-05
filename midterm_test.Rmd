@@ -13,3 +13,82 @@ library(lsmeans)
 library(dplyr)
 library(car)
 ```
+
+## Q1
+
+```{r echo=FALSE}
+# Create table for isolated_island
+
+iso <- data.frame(
+  trichromacy = c(0.35, 0.53),
+  color_deficiency = c(0.1, 0.02)
+)
+
+# set row_names 
+row.names(iso) <- c("male", "female")
+
+print(iso)
+```
+
+```{r include=FALSE}
+total_tri <- sum(iso$trichromacy)
+total_coldef <- sum(iso$color_deficiency)
+total_mals <- rowSums(iso[row.names(iso) == "male", c("trichromacy", "color_deficiency")])
+total_fems <- rowSums(iso[row.names(iso) == "female", c("trichromacy", "color_deficiency")])
+
+```
+
+## 1a Probabilities
+
+```{r echo=FALSE}
+# P(color_deficiency)
+p_color_deficiency <- total_coldef/(sum(total_coldef, total_tri))
+print(paste("P(color_deficiency) =", p_color_deficiency))
+
+# P(trichromacy)
+p_trichromacy <- total_tri/(sum(total_coldef, total_tri))
+print(paste("P(trichromacy) =", p_trichromacy))
+
+# P(male)
+p_male <- total_mals/(sum(total_mals, total_fems))
+print(paste("P(male) =", p_male))
+
+# P(female)
+p_female <- total_fems/(sum(total_mals, total_fems))
+print(paste("P(female): =", p_female))
+
+# P(color_deficiency, Male)
+p_cdm <- p_color_deficiency * p_male
+print(paste("P(color_deficiency, Male) =", p_cdm))
+
+# P(color_deficiency, female)
+p_cdf <- p_color_deficiency * p_female
+print(paste("P(color_deficiency, female) =", p_cdf))
+
+# P(color_deficiency | male)
+p_cd_m <- p_cdm/p_male
+print(paste("P(color_deficiency | male) =", p_cd_m))
+
+# P(color_deficiency | female)
+p_cd_f <- p_cdf/p_female
+print(paste("P(color_deficiency | female) =", p_cd_f))
+
+```
+
+## Q1b
+
+```{r echo=FALSE}
+cat("Is  P(color_deficiency, Male) equal to P(color_deficiency) * P(male)?", "\n")
+
+cat("Yes. computationally, P(color_deficiency, Male) equals", p_cdm, "likewise,","\n", "P(color_deficiency) * P(male) equals", p_color_deficiency* p_male )
+
+cat("Is P(color_deficiency, Male) equal to  P(color_deficiency | male) * P(male)")
+
+cat("Yes. P(color_deficiency, Male)", p_cdm, "is the same as","\n", "P(color_deficiency | male) * P(male)", p_cdm/p_male * p_male)
+
+```
+
+## Q1c
+
+Based on these computations, the probability of color deficiency is independent on the gender category because with regards to each gender (male, female), the probability of color deficiency is the same.
+that is 0.12
