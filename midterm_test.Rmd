@@ -77,16 +77,11 @@ print(paste("P(color_deficiency | female) =", p_cd_f))
 
 ## 1b.
 
-```{r echo=FALSE}
-cat("Is  P(color_deficiency, Male) equal to P(color_deficiency) * P(male)?", "\n")
+Is  P(color_deficiency, Male) equal to P(color_deficiency) * P(male)? 
+Yes. computationally, P(color_deficiency, Male) equals 0.054 likewise, P(color_deficiency) * P(male) equals 0.054
 
-cat("Yes. computationally, P(color_deficiency, Male) equals", p_cdm, "likewise,","\n", "P(color_deficiency) * P(male) equals", p_color_deficiency* p_male )
-
-cat("Is P(color_deficiency, Male) equal to  P(color_deficiency | male) * P(male)")
-
-cat("Yes. P(color_deficiency, Male)", p_cdm, "is the same as","\n", "P(color_deficiency | male) * P(male)", p_cdm/p_male * p_male)
-
-```
+Is P(color_deficiency, Male) equal to  P(color_deficiency | male) * P(male)?
+Yes. P(color_deficiency, Male) 0.054 is the same as P(color_deficiency | male) * P(male) 0.054
 
 ## 1c.
 
@@ -165,10 +160,9 @@ Statistically, P(left_handed \| male) \* P(male) is reduced to P(left_handed, ma
 From the conditional probabilities, we can say that the probability of being left-handed or right-handed is independent of gender because P(left_handed \| male) = P(left_handed) and P(right_handed \| female) = P(right_handed).
 In other words, knowing the gender does not provide additional information about handedness.
 If handedness and gender were dependent, the conditional probabilities would not be equal to the marginal probabilities of handedness.
-## Q3
 
-Behavioral experiment with 3 choices: prob of correct response is 1/3.
-Type of incorrect response is irrelevant
+## Q3
+Behavioral experiment with 3 choices: Probability of correct response is 1/3. Type of incorrect response is irrelevant
 
 ## 3a.
 
@@ -312,3 +306,16 @@ cat("5a is a student's t-test as a result of pre defining variance as EQUAL", "\
 cat("5b is Welch's t-test with variance pre defined as NOT EQUAL","\n")
 cat("5c is also Welch's t-test, though equality of variance was not defined prior in", "\n", "the function, but the default value for unpaired t-test variance is always NOT EQUAL","\n")
 ```
+
+## Q6
+## 6a.
+No. student S does not come to class due ONLY to the bad weather
+
+## 6b.
+No. Student S comes to class only when the condition is TRUE
+
+## 6c.
+Inconclusive(Yes and No): Student S could miss class for other reasons since the statement does not explicitly say student S misses class strictly for ONLY bad weather.
+
+## 6d.
+No, student S does not come to class if the weather is not fine
